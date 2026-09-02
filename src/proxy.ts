@@ -1,6 +1,39 @@
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
+/**
+ * Modo En Desarrollo / Mantenimiento:
+ * Redirige todas las solicitudes de páginas a la raíz ("/") donde se muestra el aviso de CinemaEc en desarrollo.
+ * 
+ * NOTA PARA REACTIVAR EL SITIO:
+ * Descomentar la lógica de rutas protegidas original que se encuentra guardada abajo.
+ */
+export function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl
+
+  // Redirigir cualquier ruta que no sea la raíz "/" hacia "/"
+  if (pathname !== "/") {
+    const url = new URL("/", request.url)
+    return NextResponse.redirect(url)
+  }
+
+  return NextResponse.next()
+}
+
+export const config = {
+  matcher: [
+    /*
+     * Excluir recursos estáticos y assets de Next.js
+     */
+    "/((?!api|_next/static|_next/image|_next/data|images|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
+}
+
+/*
+=============================================================================
+LÓGICA ORIGINAL GUARDADA PARA CUANDO SE RESTABLEZCA EL SERVICIO:
+=============================================================================
+
 const protectedRoutes = [
   "/profile",
   "/movies",
@@ -18,7 +51,7 @@ const publicRoutes = [
   "/reset-password",
 ]
 
-export function proxy(request: NextRequest) {
+export function proxyOriginal(request: NextRequest) {
   const { pathname } = request.nextUrl
   const token = request.cookies.get("token")?.value
 
@@ -42,9 +75,4 @@ export function proxy(request: NextRequest) {
 
   return NextResponse.next()
 }
-
-export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
-  ],
-}
+*/
