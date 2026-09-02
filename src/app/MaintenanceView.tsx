@@ -5,6 +5,9 @@ import Image from "next/image"
 import styles from "./maintenance.module.css"
 
 export default function MaintenanceView() {
+
+  const mail = "concursos@cineyaudiovisual.gob.ec"
+
   return (
     <div className={styles.container}>
       <main className={styles.card}>
@@ -14,30 +17,30 @@ export default function MaintenanceView() {
             <Image
               src="/images/logos/logo icca.png"
               alt="Logo ICCA"
-              width={36}
-              height={36}
+              width={150}
+              height={100}
               className={styles.logoImage}
               priority
             />
-            <span className={styles.brandName}>
-              Cinema<span className={styles.brandHighlight}>Ec</span>
-            </span>
           </div>
 
           <div className={styles.statusBadge}>
             <span className={styles.statusIcon} role="img" aria-label="En construcción">
               🚧
             </span>
-            <span>Plataforma en Mantenimiento</span>
+            <span>Plataforma en mantenimiento</span>
+            <span className={styles.statusIcon} role="img" aria-label="En construcción">
+              🚧
+            </span>
           </div>
         </div>
 
         {/* 1. Título principal */}
-        <h1 className={styles.title}>CinemaEc se encuentra en desarrollo</h1>
+        <h1 className={styles.title}>Nuestra aplicación CinemaEc se encuentra en desarrollo.</h1>
 
         {/* 3. Frase descriptiva */}
         <p className={styles.description}>
-          El ICCA está trabajando en nuevas funcionalidades y mejoras para CinemaEc, por el momento no se podrá ingresar a la plataforma, en un par de semanas estaremos de regreso.
+          El ICCA está trabajando en nuevas funcionalidades y mejoras para CinemaEc. Por el momento no se podrá ingresar a la plataforma. En un par de semanas estaremos de regreso.
         </p>
 
         {/* 4. Recuadro importante para postulaciones */}
@@ -47,11 +50,11 @@ export default function MaintenanceView() {
               📌
             </span>
             <h2 className={styles.importantTitle}>
-              ¿Estás postulando a Movilidad u otra convocatoria y necesitas tu perfil profesional o el de tu película?
+              ¿Estás postulando a Movilidad y necesitas tu perfil profesional o el de tu película?
             </h2>
           </div>
           <p className={styles.importantText}>
-            Por favor, para no retrasar tu postulación adjunta una bio-filmografía sencilla en formato libre. Esto no afectará el resultado de tu postulación.
+            Por favor, para no retrasar tu postulación, adjunta una bio-filmografía sencilla en formato libre. Esto no afectará el resultado de tu postulación.
           </p>
         </section>
 
@@ -61,11 +64,11 @@ export default function MaintenanceView() {
             Si tienes dudas puedes escribirnos al mail:
           </span>
           <a
-            href="mailto:consultas.icca@cineyaudiovisual.gob.ec"
+            href={`mailto:${mail}`}
             className={styles.emailLink}
           >
             <span className={styles.emailIcon}>✉️</span>
-            consultas.icca@cineyaudiovisual.gob.ec
+            {mail}
           </a>
         </div>
 
